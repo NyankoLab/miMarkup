@@ -1,7 +1,7 @@
 //==============================================================================
 // miMarkup : MarkupEntry Source
 //
-// Copyright (c) 2023-2025 TAiGA
+// Copyright (c) 2025 TAiGA
 // https://github.com/metarutaiga/miMarkup
 //==============================================================================
 #include "MarkupPCH.h"
