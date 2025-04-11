@@ -53,12 +53,14 @@ static bool deserializeJSON(std::string_view& json, miMarkup& markup)
     return false;
 }
 
-static void serializeJSON(std::string& json, miMarkup const& markup, int depth = 0)
+static void serializeJSON(std::string& json, miMarkup const& markup, size_t depth = 0, bool array = false)
 {
-    auto indent = [&](int depth) {
-        for (int i = 0; i < depth; ++i)
+    auto indent = [&](size_t space) {
+        for (size_t i = 0; i < space; ++i)
             json += ' ';
     };
+
+    json += array ? '[' : '{';
 
     for (auto& child : markup) {
         if (&child != &markup.front())
@@ -72,19 +74,11 @@ static void serializeJSON(std::string& json, miMarkup const& markup, int depth =
             json += ':';
         }
         if (child.IsArray()) {
-            json += '[';
-            serializeJSON(json, child, depth + 1);
-            json += '\n';
-            indent(depth + 1);
-            json += ']';
+            serializeJSON(json, child, depth + 1, true);
             continue;
         }
         if (child.IsObject()) {
-            json += '{';
             serializeJSON(json, child, depth + 1);
-            json += '\n';
-            indent(depth + 1);
-            json += '}';
             continue;
         }
         if (child.IsString()) {
@@ -95,9 +89,13 @@ static void serializeJSON(std::string& json, miMarkup const& markup, int depth =
         }
         json += child.value;
     }
+
+    json += '\n';
+    indent(depth);
+    json += array ? ']' : '}';
 }
 
-miMarkup* miMarkupJSONLoad(std::string_view json)
+miMarkup* miMarkup::fromJSON(std::string_view json)
 {
     miMarkup* markup = new miMarkup;
     if (markup) {
@@ -112,12 +110,9 @@ miMarkup* miMarkupJSONLoad(std::string_view json)
     return markup;
 }
 
-std::string miMarkupJSONSave(miMarkup const& markup)
+std::string miMarkup::toJSON() const
 {
     std::string json;
-    json += '{';
-    serializeJSON(json, markup);
-    json += '\n';
-    json += '}';
+    serializeJSON(json, *this);
     return json;
 }

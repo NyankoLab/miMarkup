@@ -12,6 +12,8 @@ bool miMarkup::IsArray() const
         return false;
     if (front().name.empty() == false)
         return false;
+    if (front().value.empty() && front().empty())
+        return false;
     return true;
 }
 
@@ -42,9 +44,9 @@ bool miMarkup::IsNumber() const
     if (empty() == false)
         return false;
     int dot = 0;
-    for (size_t i = 0; i < value.size(); ++i) {
-        char c = value[i];
-        if (c == '-' && i == 0)
+    for (auto it = value.begin(); it != value.end(); ++it) {
+        char c = (*it);
+        if (c == '-' && it == value.begin())
             continue;
         if (c >= '0' && c <= '9')
             continue;
@@ -59,7 +61,7 @@ bool miMarkup::IsObject() const
 {
     if (empty())
         return false;
-    if (front().empty() == false)
+    if (front().name.empty())
         return false;
     return true;
 }
