@@ -21,6 +21,18 @@
 		F54D9BED2DA80E7900B429A9 /* miMarkup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BEB2DA80E7900B429A9 /* miMarkup.cpp */; };
 		F54D9BEE2DA80E7900B429A9 /* miMarkup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BEB2DA80E7900B429A9 /* miMarkup.cpp */; };
 		F54D9BEF2DA80E7900B429A9 /* miMarkup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BEB2DA80E7900B429A9 /* miMarkup.cpp */; };
+		F54D9BF12DA8B47000B429A9 /* miMarkupXML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BF02DA8B47000B429A9 /* miMarkupXML.cpp */; };
+		F54D9BF22DA8B47000B429A9 /* miMarkupXML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BF02DA8B47000B429A9 /* miMarkupXML.cpp */; };
+		F54D9BF32DA8B47000B429A9 /* miMarkupXML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BF02DA8B47000B429A9 /* miMarkupXML.cpp */; };
+		F54D9BF42DA8B47000B429A9 /* miMarkupXML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BF02DA8B47000B429A9 /* miMarkupXML.cpp */; };
+		F54D9BF62DA8E74100B429A9 /* miMarkupYAML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BF52DA8E74100B429A9 /* miMarkupYAML.cpp */; };
+		F54D9BF72DA8E74100B429A9 /* miMarkupYAML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BF52DA8E74100B429A9 /* miMarkupYAML.cpp */; };
+		F54D9BF82DA8E74100B429A9 /* miMarkupYAML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BF52DA8E74100B429A9 /* miMarkupYAML.cpp */; };
+		F54D9BF92DA8E74100B429A9 /* miMarkupYAML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BF52DA8E74100B429A9 /* miMarkupYAML.cpp */; };
+		F54D9BFB2DA9036900B429A9 /* miMarkupTOML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BFA2DA9036900B429A9 /* miMarkupTOML.cpp */; };
+		F54D9BFC2DA9036900B429A9 /* miMarkupTOML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BFA2DA9036900B429A9 /* miMarkupTOML.cpp */; };
+		F54D9BFD2DA9036900B429A9 /* miMarkupTOML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BFA2DA9036900B429A9 /* miMarkupTOML.cpp */; };
+		F54D9BFE2DA9036900B429A9 /* miMarkupTOML.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F54D9BFA2DA9036900B429A9 /* miMarkupTOML.cpp */; };
 		F5C252082D884B7C005D23CD /* Markup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5C252072D884B7C005D23CD /* Markup.cpp */; };
 		F5C252092D884B7C005D23CD /* Markup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5C252072D884B7C005D23CD /* Markup.cpp */; };
 		F5C2520A2D884B7C005D23CD /* Markup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5C252072D884B7C005D23CD /* Markup.cpp */; };
@@ -76,6 +88,9 @@
 		F54D9BE52DA79F1700B429A9 /* miMarkup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = miMarkup.h; path = ../../../miMarkup.h; sourceTree = SOURCE_ROOT; };
 		F54D9BE62DA79F1700B429A9 /* miMarkupJSON.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = miMarkupJSON.cpp; path = ../../../miMarkupJSON.cpp; sourceTree = SOURCE_ROOT; };
 		F54D9BEB2DA80E7900B429A9 /* miMarkup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = miMarkup.cpp; path = ../../../miMarkup.cpp; sourceTree = SOURCE_ROOT; };
+		F54D9BF02DA8B47000B429A9 /* miMarkupXML.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = miMarkupXML.cpp; path = ../../../miMarkupXML.cpp; sourceTree = SOURCE_ROOT; };
+		F54D9BF52DA8E74100B429A9 /* miMarkupYAML.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = miMarkupYAML.cpp; path = ../../../miMarkupYAML.cpp; sourceTree = SOURCE_ROOT; };
+		F54D9BFA2DA9036900B429A9 /* miMarkupTOML.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = miMarkupTOML.cpp; path = ../../../miMarkupTOML.cpp; sourceTree = SOURCE_ROOT; };
 		F5C251CB2D871835005D23CD /* MarkupPCH.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MarkupPCH.h; path = ../MarkupPCH.h; sourceTree = SOURCE_ROOT; };
 		F5C251CD2D8736A6005D23CD /* ImGuiFileDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ImGuiFileDialog.h; path = ../../../../ImGuiFileDialog/ImGuiFileDialog.h; sourceTree = SOURCE_ROOT; };
 		F5C251CE2D8736A6005D23CD /* ImGuiFileDialog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ImGuiFileDialog.cpp; path = ../../../../ImGuiFileDialog/ImGuiFileDialog.cpp; sourceTree = SOURCE_ROOT; };
@@ -175,6 +190,9 @@
 				F54D9BEB2DA80E7900B429A9 /* miMarkup.cpp */,
 				F54D9BE52DA79F1700B429A9 /* miMarkup.h */,
 				F54D9BE62DA79F1700B429A9 /* miMarkupJSON.cpp */,
+				F54D9BFA2DA9036900B429A9 /* miMarkupTOML.cpp */,
+				F54D9BF02DA8B47000B429A9 /* miMarkupXML.cpp */,
+				F54D9BF52DA8E74100B429A9 /* miMarkupYAML.cpp */,
 				D644A042231ED82900B75B77 /* Products */,
 				300264BD24266097004559E0 /* Frameworks */,
 			);
@@ -335,6 +353,9 @@
 				F5E5B0E72D6C56AB008E0D21 /* MarkupEntry.cpp in Sources */,
 				F5C2520A2D884B7C005D23CD /* Markup.cpp in Sources */,
 				F54D9BE92DA79F1700B429A9 /* miMarkupJSON.cpp in Sources */,
+				F54D9BFD2DA9036900B429A9 /* miMarkupTOML.cpp in Sources */,
+				F54D9BF42DA8B47000B429A9 /* miMarkupXML.cpp in Sources */,
+				F54D9BF82DA8E74100B429A9 /* miMarkupYAML.cpp in Sources */,
 				F54D9BEE2DA80E7900B429A9 /* miMarkup.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,12 +367,15 @@
 				F5E5B0DE2D6C56AB008E0D21 /* MarkupEntry.cpp in Sources */,
 				F5C252082D884B7C005D23CD /* Markup.cpp in Sources */,
 				D62FEBF12BE50FF3004E9FDF /* dllmain.cpp in Sources */,
+				F54D9BF32DA8B47000B429A9 /* miMarkupXML.cpp in Sources */,
 				F54D9BE82DA79F1700B429A9 /* miMarkupJSON.cpp in Sources */,
 				F5E5B1A32D6C65EC008E0D21 /* except.cpp in Sources */,
 				F54D9BEF2DA80E7900B429A9 /* miMarkup.cpp in Sources */,
+				F54D9BFB2DA9036900B429A9 /* miMarkupTOML.cpp in Sources */,
 				D6169D0A2BB17E3100E5490C /* new.cpp in Sources */,
 				F53FD15A2D8FF404003E81E1 /* tls.cpp in Sources */,
 				D6169D0C2BB17E4900E5490C /* ucrt.cpp in Sources */,
+				F54D9BF72DA8E74100B429A9 /* miMarkupYAML.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,6 +386,9 @@
 				F5E5B0F92D6C56AB008E0D21 /* MarkupEntry.cpp in Sources */,
 				F5C2520B2D884B7C005D23CD /* Markup.cpp in Sources */,
 				F54D9BE72DA79F1700B429A9 /* miMarkupJSON.cpp in Sources */,
+				F54D9BFE2DA9036900B429A9 /* miMarkupTOML.cpp in Sources */,
+				F54D9BF12DA8B47000B429A9 /* miMarkupXML.cpp in Sources */,
+				F54D9BF62DA8E74100B429A9 /* miMarkupYAML.cpp in Sources */,
 				F54D9BED2DA80E7900B429A9 /* miMarkup.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,10 +397,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F54D9BEC2DA80E7900B429A9 /* miMarkup.cpp in Sources */,
 				F5E5B0F02D6C56AB008E0D21 /* MarkupEntry.cpp in Sources */,
 				F5C252092D884B7C005D23CD /* Markup.cpp in Sources */,
+				F54D9BFC2DA9036900B429A9 /* miMarkupTOML.cpp in Sources */,
 				F54D9BEA2DA79F1700B429A9 /* miMarkupJSON.cpp in Sources */,
-				F54D9BEC2DA80E7900B429A9 /* miMarkup.cpp in Sources */,
+				F54D9BF22DA8B47000B429A9 /* miMarkupXML.cpp in Sources */,
+				F54D9BF92DA8E74100B429A9 /* miMarkupYAML.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

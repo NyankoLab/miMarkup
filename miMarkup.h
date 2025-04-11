@@ -20,7 +20,14 @@ struct miMarkup : public std::vector<miMarkup>
     bool IsNumber() const;
     bool IsObject() const;
     bool IsString() const;
-};
 
-miMarkup* miMarkupJSONLoad(std::string_view json);
-std::string miMarkupJSONSave(miMarkup const& markup);
+    std::string toJSON() const;
+    std::string toTOML() const;
+    std::string toXML() const;
+    std::string toYAML() const;
+
+    static miMarkup* fromJSON(std::string_view json);
+    static miMarkup* fromTOML(std::string_view toml);
+    static miMarkup* fromXML(std::string_view xml);
+    static miMarkup* fromYAML(std::string_view yaml);
+};
