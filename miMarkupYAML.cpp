@@ -3,17 +3,57 @@
 // https://github.com/metarutaiga/miMarkup
 #include "miMarkup.h"
 
-static bool deserializeYAML(std::string_view& yaml, miMarkup& markup)
+static void deserializeYAML(std::string_view& yaml, miMarkup& markup, int const indent = 0) __attribute__((optnone))
 {
+    int space = indent;
+    std::string dummy;
+    std::string* text = &markup.value;
+    std::string_view backup = yaml;
+
     while (yaml.empty() == false) {
         char c = yaml.front(); yaml.remove_prefix(1);
         switch (c) {
+        case ':':
+            markup.name.swap(markup.value);
+            text = &markup.value;
+            break;
+        case '\t':
+        case ' ':
+        case '-':
+            if ((*text).empty()) {
+                if (markup.name.empty() || markup.empty() == false) {
+                    if (space == -1)
+                        space = 0;
+                    space++;
+                }
+                break;
+            }
+            (*text).push_back(c);
+            break;
+        case '\n':
+        case '\r':
+            space = -1;
+            break;
         default:
+            if (indent != space) {
+                yaml = backup;
+                if (indent < space) {
+                    markup.push_back({});
+                    deserializeYAML(yaml, markup.back(), space);
+                    space = 0;
+                    break;
+                }
+                if (indent > space) {
+                    return;
+                }
+            }
+            (*text).push_back(c);
             break;
         }
+        backup = yaml;
     }
 
-    return false;
+    return;
 }
 
 static void serializeYAML(std::string& yaml, miMarkup const& markup, size_t depth = 0, bool array = false)
@@ -54,9 +94,8 @@ static void serializeYAML(std::string& yaml, miMarkup const& markup, size_t dept
             serializeYAML(yaml, child, depth + (array ? 2 : 1));
             continue;
         }
-        if (child.name.empty() == false) {
+        if (child.name.empty() == false && child.value.empty() == false)
             indent(length - child.name.size() + 1);
-        }
         yaml += child.value;
     }
 }
@@ -66,7 +105,8 @@ miMarkup* miMarkup::fromYAML(std::string_view yaml)
     miMarkup* markup = new miMarkup;
     if (markup) {
         while (yaml.empty() == false) {
-            deserializeYAML(yaml, *markup);
+            markup->push_back({});
+            deserializeYAML(yaml, (*markup).back());
         }
         if (markup->empty() && markup->name.empty() && markup->value.empty()) {
             delete markup;
