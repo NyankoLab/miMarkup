@@ -1,9 +1,6 @@
-//==============================================================================
-// miMarkup : miMarkupYAML Source
-//
-// Copyright (c) 2025 TAiGA
+// SPDX-FileCopyrightText: Copyright 2025 TAiGA
+// SPDX-License-Identifier: MIT
 // https://github.com/metarutaiga/miMarkup
-//==============================================================================
 #include "miMarkup.h"
 
 static bool deserializeYAML(std::string_view& yaml, miMarkup& markup)

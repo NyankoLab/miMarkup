@@ -1,9 +1,6 @@
-//==============================================================================
-// miMarkup : miMarkup Header
-//
-// Copyright (c) 2025 TAiGA
+// SPDX-FileCopyrightText: Copyright 2025 TAiGA
+// SPDX-License-Identifier: MIT
 // https://github.com/metarutaiga/miMarkup
-//==============================================================================
 #pragma once
 
 #include <string>

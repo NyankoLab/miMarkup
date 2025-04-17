@@ -1,22 +1,60 @@
-//==============================================================================
-// miMarkup : miMarkupJSON Source
-//
-// Copyright (c) 2025 TAiGA
+// SPDX-FileCopyrightText: Copyright 2025 TAiGA
+// SPDX-License-Identifier: MIT
 // https://github.com/metarutaiga/miMarkup
-//==============================================================================
 #include "miMarkup.h"
+
+static char deserializeEscaping(char c)
+{
+    switch (c) {
+    case 'b':
+        return '\b';
+    case 'f':
+        return '\f';
+    case 'n':
+        return '\n';
+    case 'r':
+        return '\r';
+    case 't':
+        return '\t';
+    }
+    return c;
+}
+
+static std::string serializeEscaping(std::string const& text)
+{
+    std::string output;
+    for (char c : text) {
+        switch (c) {
+        case '\b':
+            output += "\\b";
+            break;
+        case '\f':
+            output += "\\f";
+            break;
+        case '\n':
+            output += "\\n";
+            break;
+        case '\r':
+            output += "\\r";
+            break;
+        case '\t':
+            output += "\\t";
+            break;
+        default:
+            output += c;
+        }
+    }
+    return output;
+}
 
 static bool deserializeJSON(std::string_view& json, miMarkup& markup)
 {
+    bool escape = false;
     std::string* text = &markup.value;
 
     while (json.empty() == false) {
         char c = json.front(); json.remove_prefix(1);
         switch (c) {
-        case ' ':
-        case '\r':
-        case '\n':
-            break;
         case '[':
         case '{':
             do {
@@ -29,20 +67,28 @@ static bool deserializeJSON(std::string_view& json, miMarkup& markup)
         case '}':
             return false;
         case '"':
+            escape = false;
             (*text).clear();
             while (json.empty() == false) {
                 c = json.front(); json.remove_prefix(1);
-                if (c == '"') {
-                    if ((*text).empty() == false || (*text).back() != '\\')
-                        break;
+                if (c == '"' && escape == false)
+                    break;
+                if ((*text).empty() == false && escape) {
                     (*text).pop_back();
+                    c = deserializeEscaping(c);
                 }
+                escape = (c == '\\') && (escape == false);
                 (*text).push_back(c);
             }
             break;
         case ':':
             markup.name.swap(markup.value);
             text = &markup.value;
+            break;
+        case ' ':
+        case '\n':
+        case '\r':
+        case '\t':
             break;
         default:
             (*text).push_back(c);
@@ -69,7 +115,7 @@ static void serializeJSON(std::string& json, miMarkup const& markup, size_t dept
         indent(depth + 1);
         if (child.name.empty() == false) {
             json += '"';
-            json += child.name;
+            json += serializeEscaping(child.name);
             json += '"';
             json += ':';
         }
@@ -83,7 +129,7 @@ static void serializeJSON(std::string& json, miMarkup const& markup, size_t dept
         }
         if (child.IsString()) {
             json += '"';
-            json += child.value;
+            json += serializeEscaping(child.value);
             json += '"';
             continue;
         }
