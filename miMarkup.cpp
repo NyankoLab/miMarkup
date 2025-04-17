@@ -1,9 +1,6 @@
-//==============================================================================
-// miMarkup : miMarkup Header
-//
-// Copyright (c) 2025 TAiGA
+// SPDX-FileCopyrightText: Copyright 2025 TAiGA
+// SPDX-License-Identifier: MIT
 // https://github.com/metarutaiga/miMarkup
-//==============================================================================
 #include "miMarkup.h"
 
 bool miMarkup::IsArray() const
@@ -50,7 +47,7 @@ bool miMarkup::IsNumber() const
             continue;
         if (c >= '0' && c <= '9')
             continue;
-        if (c == '.' && dot++ == 0)
+        if (c == '.' && (dot++) == 0)
             continue;
         return false;
     }
