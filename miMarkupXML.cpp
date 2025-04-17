@@ -92,8 +92,10 @@ static bool deserializeXML(std::string_view& xml, miMarkup& markup)
                     markup.pop_back();
                 if (markup.empty() == false)
                     markup.value.clear();
-                if (markup.name == "array")
-                    markup.name.clear();
+                if (markup.name == "array") {
+                    if (markup.empty() == false || markup.value.empty() == false)
+                        markup.name.clear();
+                }
                 return true;
             }
             tag = false;

@@ -18,7 +18,7 @@ static miMarkup* markup = nullptr;
 //------------------------------------------------------------------------------
 void Markup::Initialize()
 {
-    input = inputXML;
+    input = inputYAML;
     markup = nullptr;
 }
 //------------------------------------------------------------------------------
@@ -90,8 +90,8 @@ bool Markup::Update(const UpdateData& updateData, bool& show)
     ImGui::SetNextWindowSize(ImVec2(1280.0f, 892.0f), ImGuiCond_Appearing);
     if (ImGui::Begin("Markup", &show, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoDocking))
     {
-        static int inputType = 'XML ';
-        static int outputType = 'XML ';
+        static int inputType = 'YAML';
+        static int outputType = 'YAML';
         static bool build = true;
 
         float width = ImGui::GetWindowWidth() / 2.0f - 16.0f;
@@ -232,5 +232,23 @@ std::string inputXML = R"(<first_name>John</first_name>
 </children>
 <spouse>null</spouse>)";
 //------------------------------------------------------------------------------
-std::string inputYAML;
+std::string inputYAML = R"(first_name: John
+last_name:  Smith
+is_alive:   true
+age:        27
+address:
+ street_address: 21 2nd Street
+ city:           New York
+ state:          NY
+ postal_code:    10021-3100
+phone_numbers:
+ - type:   home
+   number: 212 555-1234
+ - type:   office
+   number: 646 555-4567
+children:
+ - Catherine
+ - Thomas
+ - Trevor
+spouse:     null)";
 //------------------------------------------------------------------------------
