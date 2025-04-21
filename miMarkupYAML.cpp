@@ -3,17 +3,17 @@
 // https://github.com/metarutaiga/miMarkup
 #include "miMarkup.h"
 
-static void deserializeYAML(std::string_view& yaml, miMarkup& markup, int* pSpace = nullptr, int const indent = -1)
+static void deserializeYAML(std::string_view& yaml, miMarkup& markup, int const indent = -1, int space = 0)
 {
     if (indent == -1) {
-        int space = 0;
         if (markup.empty() || yaml.front() != ' ')
             markup.push_back({});
-        deserializeYAML(yaml, markup.back(), &space, 0);
+        deserializeYAML(yaml, markup.back(), 0);
         return;
     }
 
-    int& space = *pSpace;
+    bool array = false;
+    bool child = false;
     std::string* text = &markup.value;
 
     while (yaml.empty() == false) {
@@ -28,8 +28,12 @@ static void deserializeYAML(std::string_view& yaml, miMarkup& markup, int* pSpac
         case ' ':
         case '-':
             if ((*text).empty()) {
-                if (space != -1)
+                if (space != -1) {
                     space++;
+                    child = true;
+                    if (c == '-')
+                        array = true;
+                }
                 break;
             }
             (*text).push_back(c);
@@ -38,11 +42,31 @@ static void deserializeYAML(std::string_view& yaml, miMarkup& markup, int* pSpac
         case '\r':
             return;
         default:
+            if (child) {
+                child = false;
+                if (array) {
+                    array = false;
+                    markup.push_back({});
+                    markup.back().push_back({});
+                }
+                else if (markup.empty() == false && markup.back().empty() == false) {
+                    markup.back().push_back({});
+                }
+                else {
+                    markup.push_back({});
+                }
+            }
+            if (markup.empty())
+                space = indent;
             if (indent != space && space > 0) {
                 yaml = std::string_view(yaml.data() - 1, yaml.size() + 1);
                 if (indent < space) {
-                    markup.push_back({});
-                    deserializeYAML(yaml, markup.back(), &space, space);
+                    deserializeYAML(yaml, markup.back(), indent + 1, space);
+                    if (markup.empty() == false && markup.name.empty() && markup.value.empty() &&
+                        markup.back().empty() && markup.back().name.empty() && markup.back().value.empty() == false) {
+                        markup.value.swap(markup.back().value);
+                        markup.pop_back();
+                    }
                 }
                 return;
             }
