@@ -3,6 +3,10 @@
 // https://github.com/metarutaiga/miMarkup
 #include "miMarkup.h"
 
+#if defined(_UCRT)
+#define strcasecmp _stricmp
+#endif
+
 bool miMarkup::IsArray() const
 {
     if (empty())
