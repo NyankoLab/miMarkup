@@ -59,7 +59,7 @@ static std::string serializeEscaping(std::string const& text)
             output += "&apos;";
             break;
         case '\"':
-            output += "&qout;";
+            output += "&quot;";
             break;
         default:
             output += c;
@@ -109,17 +109,20 @@ static bool deserializeXML(std::string_view& xml, miMarkup& markup)
                 if (deserializeEscaping(*text))
                     continue;
             }
+            [[fallthrough]];
         case '/':
             if (tag) {
                 slash = true;
                 break;
             }
+            [[fallthrough]];
         case ' ':
         case '\n':
         case '\r':
         case '\t':
             if (tag)
                 break;
+            [[fallthrough]];
         default:
             if (c == '&')
                 escape = true;
